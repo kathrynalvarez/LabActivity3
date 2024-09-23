@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     // Declare view properties - the first one is done for you
     lateinit var displayTextView: TextView
-
+    lateinit var nameEditText: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,9 +20,14 @@ class MainActivity : AppCompatActivity() {
 
         
         findViewById<Button>(R.id.clickMeButton).setOnClickListener {
-            displayTextView.text = "Hello, ${findViewById<EditText>(R.id.nameEditText).text}"
-        }
+            nameEditText =  findViewById<EditText>(R.id.nameEditText)
 
+            if (nameEditText.text.isEmpty()){
+                nameEditText.error = "Please enter a name"
+            } else {
+                displayTextView.text = "Hello, ${nameEditText.text}!"
+            }
+        }
 
     }
 }
